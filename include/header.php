@@ -24,10 +24,10 @@
             <div class="navbar-collapse  collapse">
               <ul class="nav navbar-nav navbar-right" >
                   <li class="active"><a href="#home">Home</a></li>
-                 <li><a href="#about">About</a></li>
-                 <li><a href="#album">Albums</a></li>
-                 <li><a href="#contact">Contact</a></li>
-                 <li><a href="#"  data-toggle="modal" data-target="#loginModel">Login</a></li>
+                  <li><a href="#play_songs">Play Songs</a></li>
+                  <li><a href="#about">About</a></li>
+                  <li><a href="#contact">Contact</a></li>
+                  <li><a href="#"  data-toggle="modal" data-target="#loginModel">Login</a></li>
               </ul>
             </div>
             <!-- #Nav Ends -->
