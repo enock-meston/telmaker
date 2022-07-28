@@ -42,10 +42,13 @@
 
 
 
+
+
+
 <!-- login Form Model -->
 
 
-<!--Contact Starts-->
+<!--Login Modal Starts-->
 <div class="modal fade" id="loginModel" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -57,12 +60,41 @@
                     <input type="password" name="password" placeholder="Password">
                     <input type="submit" class="btn btn-warning bgcolor" name="loginbtn" value="Login">
                 </div>
-                <br>
+                
+                
             </div>
+            <a class="btn btn-warning bgcolor" href="#" data-toggle="modal" data-target="#NewAccountModel">New Account</a><br><br>
     </div>
 
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<!--  -->
+<!-- ends of Modal -->
+
+<div class="modal fade" id="NewAccountModel" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="contactform center">
+            <div class="row">      
+                <div class="col-sm-6 col-sm-offset-3 ">
+                <h4><b>New Account To TELMAKER</b></h4>
+                    <input type="text" name="username" placeholder="UserName">
+                    <input type="text" name="email" placeholder="Email">
+                    <input type="password" name="password" placeholder="New Password">
+                    <input type="password" name="Retypepassword" placeholder="Retype password"><br>
+                    <input type="submit" class="btn btn-warning bgcolor" name="Savebtn" value="Save Me">
+                </div>
+                
+            </div>
+    </div>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- new account Modal -->
+
+
+<!-- end new account Modal -->
+
+
