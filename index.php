@@ -23,16 +23,16 @@ $msg = "";
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Market Owner</title>
+    <title>TelMaker</title>
 
     <!-- Custom fonts for this template-->
-    <link href="../plugins/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="plugins/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="../plugins/css/sb-admin-2.css" rel="stylesheet">
+    <link href="plugins/css/sb-admin-2.css" rel="stylesheet">
     <link rel="shortcut icon" href="../plugins/img/mcmlogopng.png" type="image/x-icon">
 </head>
 
@@ -41,7 +41,7 @@ $msg = "";
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-       <?php 
+        <?php 
             include 'include/sidebar.php';
        ?>
 
@@ -51,9 +51,9 @@ $msg = "";
             <!-- Main Content -->
             <div id="content">
 
-                
 
-                   <?php 
+
+                <?php 
                         include 'include/topbar.php'
                    ?>
 
@@ -62,49 +62,63 @@ $msg = "";
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h4>
-                        Market Owner's Page
+                            Music
                         </h4>
                     </div>
-                </div>
-                <!-- /.container-fluid -->
 
-                <!-- category -->
-                <div class="container">
                     <div class="row">
-                        <div class="col-sm-6">
-                            <!---Success Message--->
-                            <?php if($msg){ ?>
-                            <div class="alert alert-success" role="alert">
-                                <strong>Well done!</strong> <?php echo htmlentities($msg);?>
+                        <div class="col-lg-4">
+                            <div class="card shadow mb-1">
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <img class="img-fluid px-3 px-sm-0 mt-1 mb-1" style="width: 25rem;"
+                                            src="plugins/img/samp1.jpg" alt="...">
+                                    </div>
+                                    <h6 class="m-0 font-weight-bold text-dark"
+                                        style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
+                                        and make up the bulk of the card's content.
+                                    </h6>
+                                    <p
+                                        style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; color: rgba(0, 0, 0, 1.0); font-size:12px;">
+                                        Some quick example text to build on the card title and make up the bulk of the
+                                        card's content.
+                                    </p>
+                                </div>
                             </div>
-                            <?php } ?>
-                            <!---Error Message--->
-                            <?php if($error){ ?>
-                            <div class="alert alert-danger" role="alert">
-                                <strong>Oh snap!</strong> <?php echo htmlentities($error);?>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="card shadow mb-1">
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <img class="img-fluid px-3 px-sm-0 mt-1 mb-1" style="width: 25rem;"
+                                            src="plugins/img/samp.jpg" alt="...">
+                                    </div>
+                                    <h6 class="m-0 font-weight-bold text-dark"
+                                        style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
+                                        and make up the bulk of the card's content.
+                                    </h6>
+                                    <p
+                                        style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; color: rgba(0, 0, 0, 1.0); font-size:12px;">
+                                        Some quick example text to build on the card title and make up the bulk of the
+                                        card's content.
+                                    </p>
+                                    
+                                </div>
                             </div>
-                            <?php } ?>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#CategoryModal">Add <i
-                                class="fas fa-fw fa-plus"></i></a>
-                    </div>
-                    <hr>
-                    <h4>Market Owner List</h4>
-                    <!--Enginners  tables -->
-                                <!-- DataTales Example -->
-                   
-                    <!--end Enginners  tables -->
-
                 </div>
+                <!-- /.container-fluid -->
+
+
 
             </div>
             <!-- End of Main Content -->
 
             <!-- Footer -->
-           <?php 
+            <?php 
                 include 'include/footer.php';
            ?>
             <!-- End of Footer -->
@@ -137,38 +151,41 @@ $msg = "";
                         <div class="table-responsive">
                             <!-- form of adding Categories -->
                             <form action="" method="POST">
-                            <div class="form-group row">
+                                <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" name="fname" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="First Name">
+                                        <input type="text" name="fname" class="form-control form-control-user"
+                                            id="exampleFirstName" placeholder="First Name">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" name="lname" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="Last Name">
+                                        <input type="text" name="lname" class="form-control form-control-user"
+                                            id="exampleLastName" placeholder="Last Name">
                                     </div>
-                             </div>
-                            <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" name="phone" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="Phone Number">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" name="username" required  class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="User-Name">
-                                    </div>
-                            </div>
-                                <div class="form-group">
-                                    <input type="email" name="email" required class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="Email Address">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" name="password" required class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password">
+                                        <input type="text" name="phone" class="form-control form-control-user"
+                                            id="exampleFirstName" placeholder="Phone Number">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="password" name="rpassword" required class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Repeat Password">
+                                        <input type="text" name="username" required
+                                            class="form-control form-control-user" id="exampleLastName"
+                                            placeholder="User-Name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" name="email" required class="form-control form-control-user"
+                                        id="exampleInputEmail" placeholder="Email Address">
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="password" name="password" required
+                                            class="form-control form-control-user" id="exampleInputPassword"
+                                            placeholder="Password">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="password" name="rpassword" required
+                                            class="form-control form-control-user" id="exampleRepeatPassword"
+                                            placeholder="Repeat Password">
                                     </div>
                                 </div>
 
@@ -187,25 +204,18 @@ $msg = "";
         </div>
     </div>
 
-    
- 
+
+
 
     <!-- Bootstrap core JavaScript-->
-    <script src="../plugins/vendor/jquery/jquery.min.js"></script>
-    <script src="../plugins/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="plugins/vendor/jquery/jquery.min.js"></script>
+    <script src="plugins/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="../plugins/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="plugins/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../plugins/js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="../plugins/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="../plugins/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="../plugins/js/demo/datatables-demo.js"></script>
+    <script src="plugins/js/sb-admin-2.min.js"></script>
 
 </body>
 
