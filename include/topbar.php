@@ -53,14 +53,18 @@
              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                  aria-haspopup="true" aria-expanded="false">
                  <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
-                 <img class="img-profile rounded-circle" src="plugins/img/undraw_profile.svg">
+                 <img class="img-profile rounded-circle" src="plugins/img/undraw_profile.svg" title="Account">
              </a>
              <!-- Dropdown - User Information -->
              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#loginModal">
-                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400" href="#" data-toggle="modal"
-                         data-target="#loginModal"></i>
+                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                      Login
+                 </a>
+
+                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#NewAccountModal">
+                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                     Create Account
                  </a>
 
              </div>
@@ -72,24 +76,106 @@
  <!-- End of Topbar -->
 
 
- <!-- Login Modal-->
- <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-     <div class="modal-dialog" role="document">
-         <div class="modal-content">
-             <div class="modal-header">
-                 <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">×</span>
-                 </button>
-             </div>
-             <div class="modal-body">
-                
-             </div>
-             <div class="modal-footer">
-                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                 <a class="btn btn-primary" href="logout.php">Logout</a>
-             </div>
-         </div>
-     </div>
- </div>
+ 
+
+  <!-- Login Modal-->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Loginnnn</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST">
+                        <div class="form-group">
+                            <input type="text" name="username" required class="form-control form-control-user"
+                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                placeholder="Enter User-Name Or Email Address...">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" required class="form-control form-control-user"
+                                id="exampleInputPassword" placeholder="Password">
+                        </div>
+                        <input type="submit" name="loginBtn" value="Login" class="btn btn-primary btn-user btn-block">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--ends Login Modal-->
+
+
+
+    <!-- new Account Modal -->
+        <div class="modal fade" id="NewAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New account </h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-body">
+                            <!-- form of adding Categories -->
+                            <form action="" method="POST">
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" name="fname" class="form-control form-control-user"
+                                            id="exampleFirstName" placeholder="First Name">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" name="lname" class="form-control form-control-user"
+                                            id="exampleLastName" placeholder="Last Name">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" name="phone" class="form-control form-control-user"
+                                            id="exampleFirstName" placeholder="Phone Number">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" name="username" required
+                                            class="form-control form-control-user" id="exampleLastName"
+                                            placeholder="User-Name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="email" required class="form-control form-control-user"
+                                        id="exampleInputEmail" placeholder="Email Address">
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="password" name="password" required
+                                            class="form-control form-control-user" id="exampleInputPassword"
+                                            placeholder="Password">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="password" name="rpassword" required
+                                            class="form-control form-control-user" id="exampleRepeatPassword"
+                                            placeholder="Repeat Password">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary btn-user btn-block" value="save" name="newaccountbtn">
+                                </div>
+                            </form>
+                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div><!--end of new acount modal  -->

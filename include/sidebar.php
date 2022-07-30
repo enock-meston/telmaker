@@ -4,7 +4,7 @@
      <!-- Sidebar - Brand -->
      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
          <div class="sidebar-brand-icon rotate-n-15">
-             <i class="fas fa-laugh-wink"></i>
+            <img class="img-profile rounded-circle" src="plugins/img/logo1.png" style="width: 3rem;">
          </div>
          <div class="sidebar-brand-text mx-3">Tel<sup>Maker</sup></div>
      </a>

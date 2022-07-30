@@ -1,5 +1,5 @@
 <?php
-require 'vendor/autoload.php';
+ require 'vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -14,7 +14,6 @@ if (mysqli_connect_errno())
 {
  echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
-
 
 
 // sending email function

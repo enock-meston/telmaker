@@ -2,9 +2,9 @@
 session_start();
 include '../include/condig.php';
 error_reporting(0);
-// if (strlen($_SESSION['email']) == 0) {
-//     header('location:index.php');
-// } else {
+if (strlen($_SESSION['user_id']) == 0) {
+    header('location: ../index.php');
+} else {
 
 ?>
 
@@ -29,7 +29,7 @@ error_reporting(0);
 
     <!-- Custom styles for this template-->
     <link href="../plugins/css/sb-admin-2.css" rel="stylesheet">
-    <link rel="shortcut icon" href="../plugins/img/mcmlogopng.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../plugins/img/logo.png" type="image/x-icon">
 </head>
 
 <body id="page-top">
@@ -110,5 +110,5 @@ error_reporting(0);
 </html>
 
 <?php 
-//    } 
+   } 
 ?>

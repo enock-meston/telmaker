@@ -1,11 +1,11 @@
 <?php
 session_start();
-include("include/config.php");
-$_SESSION['email']=="";
+include "../include/condig.php";
+$_SESSION['user_id']=="";
 session_unset();
 session_destroy();
 
 ?>
 <script language="javascript">
-document.location="index.php";
+document.location="../index.php";
 </script>
