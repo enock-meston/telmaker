@@ -37,7 +37,7 @@
          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
              <div class="bg-white py-2 collapse-inner rounded">
                  <h6 class="collapse-header">Select</h6>
-                 <a class="collapse-item" href="#">Upload</a>
+                 <a class="collapse-item" href="upl.php">Upload</a>
                  <a class="collapse-item" href="#">Paid</a>
              </div>
          </div>

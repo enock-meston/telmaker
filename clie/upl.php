@@ -19,7 +19,7 @@ if (strlen($_SESSION['user_id']) == 0) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard</title>
+    <title>Upload</title>
 
     <!-- Custom fonts for this template-->
     <link href="../plugins/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -37,7 +37,7 @@ if (strlen($_SESSION['user_id']) == 0) {
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-       <?php 
+        <?php 
             include 'include/sidebar.php';
        ?>
 
@@ -47,9 +47,9 @@ if (strlen($_SESSION['user_id']) == 0) {
             <!-- Main Content -->
             <div id="content">
 
-               
 
-                   <?php 
+
+                <?php 
                         include 'include/topbar.php'
                    ?>
 
@@ -57,8 +57,33 @@ if (strlen($_SESSION['user_id']) == 0) {
                 <div class="container-fluid">
 
                     <!-- Content Row -->
-                    <div class="row">
+                    <div class="row justify-content-center">
+                        <form action="payAction.php" method="POST">
+                            <div class="form-group">
+                                <input type="hidden" name="amount" class="form-control form-control-user"
+                                value="100">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="username" required class="form-control form-control-user"
+                                    value="<?php echo $_SESSION['username'];?>">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="email" required class="form-control form-control-user"
+                                   value="<?php echo $_SESSION['email'];?>">
+                            </div>
 
+                            <div class="form-group">
+                                <input type="text" name="phone" required class="form-control form-control-user"
+                                   value="<?php echo $_SESSION['phone'];?>">
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary" 
+                            name="paybtn"><i class="fas fa-fw fa-shopping-cart"></i>
+                            Pay First to Upload new Music Product
+                            </button>
+                                
+                                
+                        </form>
 
                     </div>
 
@@ -69,7 +94,7 @@ if (strlen($_SESSION['user_id']) == 0) {
             <!-- End of Main Content -->
 
             <!-- Footer -->
-           <?php 
+            <?php 
                 include 'include/footer.php';
            ?>
             <!-- End of Footer -->
@@ -86,7 +111,7 @@ if (strlen($_SESSION['user_id']) == 0) {
     </a>
 
 
- 
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="../plugins/vendor/jquery/jquery.min.js"></script>
