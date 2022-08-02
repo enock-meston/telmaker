@@ -41,7 +41,10 @@ function uploadFile(name){
                               <div class="progress" style="width: ${fileLoaded}%"></div>
                             </div>
                           </div>
-                        </li>`;
+                        </li>
+                        
+                        
+                        `;
     // uploadedArea.innerHTML = ""; //uncomment this line if you don't want to show upload history
     uploadedArea.classList.add("onprogress");
     progressArea.innerHTML = progressHTML;
@@ -53,10 +56,13 @@ function uploadFile(name){
                               <div class="details">
                                 <span class="name">${name} • Uploaded</span>
                                 <span class="size">${fileSize}</span>
+                                
                               </div>
                             </div>
                             <i class="fas fa-check"></i>
-                          </li>`;
+                          </li>
+                          
+                          `;
       uploadedArea.classList.remove("onprogress");
       // uploadedArea.innerHTML = uploadedHTML; //uncomment this line if you don't want to show upload history
       uploadedArea.insertAdjacentHTML("afterbegin", uploadedHTML); //remove this line if you don't want to show upload history

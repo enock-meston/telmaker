@@ -73,6 +73,8 @@ include '../include/condig.php';
         </form>
         <section class="progress-area"></section>
         <section class="uploaded-area"></section>
+
+        <a href="uplSec.php" class="btn btn-primary">Back to Home</a>
     </div>
 
     <script src="script.js"></script>
