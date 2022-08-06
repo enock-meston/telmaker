@@ -51,7 +51,7 @@ if (isset($_POST['paybtn'])) {
     CURLOPT_CUSTOMREQUEST => 'POST',
     CURLOPT_POSTFIELDS => json_encode($request),
     CURLOPT_HTTPHEADER => array(
-        'Authorization: Bearer FLWSECK_TEST-cdb7179d2d08559a185282f84b3cb4ab-X',
+        'Authorization: Bearer FLWSECK-23ca881eed1bd2653f22e8c382fb4d85-X',
         'Content-Type: application/json'
     ),
     ));

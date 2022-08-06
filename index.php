@@ -167,25 +167,48 @@ if (isset($_POST["newaccountbtn"])) {
                     </div>
 
                     <div class="row">
+
+                            <?php 
+                            $query = mysqli_query($con,"SELECT tblcategory.catid,tblcategory.title as ctitle,tblcategory.AddedBy,
+                             musictbl.mid,musictbl.title,musictbl.musicname,musictbl.path,musictbl.thumbnail,musictbl.clentId, 
+                             musictbl.valueInAmmount,musictbl.valueInAmmount,musictbl.referece as muReference, musictbl.category,
+                             musictbl.status as mustatus FROM musictbl LEFT JOIN tblcategory ON musictbl.category= tblcategory.catid
+                              WHERE musictbl.status = 1 ORDER BY RAND() DESC");
+                                while ($row1 = mysqli_fetch_array($query)) {
+                            ?>
                         <div class="col-lg-4">
                             <div class="card shadow mb-1">
                                 <div class="card-body">
                                     <div class="text-center">
-                                        <img class="img-fluid px-3 px-sm-0 mt-1 mb-1" style="width: 10rem;"
-                                            src="plugins/img/samp.png" alt="...">
+                                        <img class="img-fluid px-3 px-sm-0 mt-1 mb-1" style="width: 20rem;"
+                                            src="clie/<?php echo $row1['thumbnail'] ;?>" alt="...">
                                     </div>
                                     <h6 class="m-0 font-weight-bold text-dark"
                                         style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
-                                        and make up the bulk of the card's content.
+                                       <?php echo $row1['title'] ;?>
                                     </h6>
                                     <p
-                                        style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; color: rgba(0, 0, 0, 1.0); font-size:12px;">
-                                        Some quick example text to build on the card title and make up the bulk of the
-                                        card's content.
+                                        style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; 
+                                        color: rgba(0, 0, 0, 1.0); font-size:12px;">
+                                        
+                                        <?php echo $row1['valueInAmmount']. "  RWF";?> 
                                     </p>
+
+                                    <p
+                                        style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; 
+                                        color: rgba(0, 0, 0, 1.0); font-size:12px;">
+                                       Category: <?php echo $row1['ctitle'] ;?>
+                                    </p>
+                                    <a href="#?id<?php echo $row1['mid'] ;?>" class="btn btn-primary">play and But</a>
                                 </div>
                             </div>
                         </div>
+
+                        <?php
+                            }
+                        
+                        ?>
+                        
 
                     </div> <!-- /.row-->
 

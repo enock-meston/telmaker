@@ -25,7 +25,7 @@ include '../include/condig.php';
                 CURLOPT_CUSTOMREQUEST => "GET",
                 CURLOPT_HTTPHEADER => array(
                   "Content-Type: application/json",
-                  "Authorization: Bearer FLWSECK_TEST-cdb7179d2d08559a185282f84b3cb4ab-X"
+                  "Authorization: Bearer FLWSECK-23ca881eed1bd2653f22e8c382fb4d85-X"
                 ),
               ));
               
@@ -67,14 +67,14 @@ include '../include/condig.php';
     <div class="wrapper">
         <header>Audio Uploading</header>
         <form action="#">
-            <input class="file-input" type="file" name="file" hidden>
+            <input class="file-input" type="file" accept=".mp3" name="file" hidden>
             <i class="fas fa-cloud-upload-alt"></i>
             <p>Browse Audio to Upload</p>
         </form>
         <section class="progress-area"></section>
         <section class="uploaded-area"></section>
 
-        <a href="uplSec.php" class="btn btn-primary">Back to Home</a>
+        <a href="uplSec.php" class="btn btn-primary">Next</a>
     </div>
 
     <script src="script.js"></script>

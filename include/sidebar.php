@@ -4,7 +4,7 @@
      <!-- Sidebar - Brand -->
      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
          <div class="sidebar-brand-icon rotate-n-15">
-            <img class="img-profile rounded-circle" src="plugins/img/logo1.png" style="width: 3rem;">
+             <img class="img-profile rounded-circle" src="plugins/img/logo1.png" style="width: 3rem;">
          </div>
          <div class="sidebar-brand-text mx-3">Tel<sup>Maker</sup></div>
      </a>
@@ -37,8 +37,15 @@
          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
              <div class="bg-white py-2 collapse-inner rounded">
                  <h6 class="collapse-header"></h6>
-                 <a class="collapse-item" href="#" title="">RDB</a>
-                 <a class="collapse-item" href="#" title="">GOSPEL</a>
+                 <?php
+                 $ret=mysqli_query($con,"SELECT * from  tblcategory where status=1");
+				    while($result=mysqli_fetch_array($ret))
+						{
+							?>
+
+                 <a class="collapse-item" href="#" title=""><?php echo $result['title'] ;?></a>
+                 <?php } ?>
+
              </div>
          </div>
      </li>

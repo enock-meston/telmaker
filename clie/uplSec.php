@@ -1,11 +1,56 @@
 <?php
 session_start();
 include '../include/condig.php';
+$msg ="";
+$error ="";
 error_reporting(0);
 if (strlen($_SESSION['user_id']) == 0) {
     header('location: index.php');
 } else {
 
+
+    if (isset($_POST['savebtn'])) {
+        $reference1 = $_POST['reference'];
+        $amount = $_POST['valueInAmmount'];
+        $categoryID = $_POST['category'];
+        $title = $_POST['title'];
+        $status = 1;
+
+
+           // images
+    $img_name = $_FILES['my_image']['name'];
+    $img_size = $_FILES['my_image']['size'];
+    $tmp_name = $_FILES['my_image']['tmp_name'];
+    $error = $_FILES['my_image']['error'];
+
+    $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+	$img_ex_lc = strtolower($img_ex);
+    $allowed_exs = array("jpg","png");
+    if (in_array($img_ex_lc,$allowed_exs)) {
+            $new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
+			$img_upload_path = 'php/thurmbnail/'.$new_img_name;
+            
+             if (move_uploaded_file($tmp_name, $img_upload_path)) {
+                 $imageSize = getimagesize("$img_upload_path");
+				if ($imageSize[0]!=920 AND $imageSize[1] != 482) {
+					$error = "Image Must Have Width of 920 pixel AND Heigth of 482 pixel";
+				}else{
+                $query= mysqli_query($con,"UPDATE `musictbl` SET `title`='$title', `thumbnail`='$img_upload_path',
+                `valueInAmmount`='$amount',`category`='$categoryID',`status`='$status' WHERE referece='$reference1'");
+
+                if ($query) {
+                    $msg ="changes saved";
+                    header("location: index.php");
+                } else {
+                    $error ="Not Saved";
+                }
+                }
+             }else {
+                $error ="Not uploaded!";
+             }
+            }
+        
+    }
 ?>
 
 <!DOCTYPE html>
@@ -58,6 +103,25 @@ if (strlen($_SESSION['user_id']) == 0) {
 
                     <!-- Content Row -->
                     <h1>Final Step to Upladad</h1>
+
+                    <!-- message block -->
+                    <div class="col-sm-12">
+                        <!---Success Message--->
+                        <?php if ($msg) { ?>
+                        <div class="alert alert-success" role="alert">
+                            <strong>Well done!</strong> <?php echo htmlentities($msg); ?>
+                        </div>
+                        <?php } ?>
+
+                        <!---Error Message--->
+                        <?php if ($error) { ?>
+                        <div class="alert alert-danger" role="alert">
+                            <strong>Oh snap!</strong> <?php echo htmlentities($error); ?>
+                        </div>
+                        <?php } ?>
+                    </div>
+                    <!--ends of message block -->
+
                     <?php
                         $reference= $_SESSION['reference'];
                         $musicName= $_SESSION['musicName'];
@@ -66,46 +130,61 @@ if (strlen($_SESSION['user_id']) == 0) {
                         while ($rowOne=mysqli_fetch_array($SelectOneMusic)) {
                         
                     ?>
-                    
 
-                        <form method="POST">
-                            
-                            <div class="form-group">
-                                <input type="text" name="title" class="form-control form-control-user"
-                                    value="<?php echo $rowOne['musicname'];?>">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name="valueInAmmount" required class="form-control form-control-user"
-                                    placeholder="Enter Ammount">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlSelect1"> Select category</label>
-                                <select class="form-control" name="category" required id="exampleFormControlSelect1">
-                                    <option hidden>selecting...</option>
-                                    <?php
+                    <!-- play video -->
+
+                    <audio controls>
+                        <source src="../clie/php/<?php echo $rowOne['path'];?>" type="audio/ogg">
+                        <source src="../clie/php/<?php echo $rowOne['path'];?>" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+
+                    <form method="POST" enctype="multipart/form-data">
+
+                        <input type="text" name="reference" value="<?php echo $reference;?>">
+                        <div class="form-group">
+                            <input type="text" name="title" class="form-control form-control-user"
+                                value="<?php echo $rowOne['musicname'];?>">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="valueInAmmount" required class="form-control form-control-user"
+                                placeholder="Enter Ammount">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1"> Select category</label>
+                            <select class="form-control" name="category" required id="exampleFormControlSelect1">
+                                <option hidden>selecting...</option>
+                                <?php
 													// Feching active categories
 													$ret=mysqli_query($con,"SELECT * from  tblcategory where status=1");
 													while($result=mysqli_fetch_array($ret))
 													{
 													?>
-                                    <option value="<?php echo $result['catid'] ;?>">
-                                        <?php echo $result['title'] ;?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
+                                <option value="<?php echo $result['catid'] ;?>">
+                                    <?php echo $result['title'] ;?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
 
-                            <button type="submit" class="btn btn-primary" name="savebtn"><i
-                                    class="fas fa-fw fa-shopping-cart"></i>
-                                Save
-                            </button>
+                        <div class="form-group">
+                            <i class="fas fa-fw fa-quote-left"></i>
+                            <label for="">  Thumbanail must have Width of 920 pixel AND Heigth of 482 pixel</label>
+                            <i class="fas fa-fw fa-quote-right"></i>
+                            <input type="file" name="my_image" required accept=".png,.jpg" class="form-control form-control-user">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" name="savebtn"><i
+                                class="fas fa-fw fa-shopping-cart"></i>
+                            Save
+                        </button>
 
 
-                        </form>
-                        <?php
+                    </form>
+                    <?php
                             }
                         
                         ?>
-                    
+
 
                 </div>
                 <!-- /.container-fluid -->

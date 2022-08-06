@@ -14,7 +14,7 @@
 
      <!-- Nav Item - Dashboard -->
      <li class="nav-item active">
-         <a class="nav-link" href="dashboard.php">
+         <a class="nav-link" href="index.php">
              <i class="fas fa-fw fa-tachometer-alt"></i>
              <span>Dashboard</span></a>
      </li>
@@ -38,7 +38,8 @@
              <div class="bg-white py-2 collapse-inner rounded">
                  <h6 class="collapse-header">Select</h6>
                  <a class="collapse-item" href="upl.php">Upload</a>
-                 <a class="collapse-item" href="#">Paid</a>
+                 <a class="collapse-item" href="updDra.php">Draft</a>
+                 <a class="collapse-item" href="#">Buy Music</a>
              </div>
          </div>
      </li>

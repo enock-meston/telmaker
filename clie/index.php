@@ -37,7 +37,7 @@ if (strlen($_SESSION['user_id']) == 0) {
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-       <?php 
+        <?php 
             include 'include/sidebar.php';
        ?>
 
@@ -47,9 +47,9 @@ if (strlen($_SESSION['user_id']) == 0) {
             <!-- Main Content -->
             <div id="content">
 
-               
 
-                   <?php 
+
+                <?php 
                         include 'include/topbar.php'
                    ?>
 
@@ -58,26 +58,131 @@ if (strlen($_SESSION['user_id']) == 0) {
 
                     <!-- Content Row -->
                     <div class="row">
+                        <!-- my product Musics -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+
+                                        <div class="col mr-2">
+                                            <a href="#">
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">My
+                                                    Products
+                                                </div>
+                                            </a>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <?php 
+                                                        $u_id = $_SESSION['user_id'];
+                                                    $query = mysqli_query($con, "SELECT * from musictbl WHERE clentId='$u_id' AND status= 1");
+                                                    $countposts = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                        <?php echo htmlentities($countposts); ?></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-auto">
+                                            <i class="fas fa-music fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--  -->
 
 
+                        <!-- my transations -->
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+
+                                        <div class="col mr-2">
+                                            <a href="#">
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                    Fees Charge Payments
+                                                </div>
+                                            </a>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <?php 
+                                                        $email_id = $_SESSION['email'];
+                                                    $query = mysqli_query($con, "SELECT * from chargetransactiontbl WHERE client_email='$email_id'");
+                                                    $countposts = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                        <?php echo htmlentities($countposts); ?></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-auto">
+                                            <i class="fas fa-money-bill fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- Draft -->
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+
+                                        <div class="col mr-2">
+                                            <a href="updDra.php">
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                    Music Draft
+                                                </div>
+                                            </a>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <?php 
+                                                        $user_id = $_SESSION['user_id'];
+                                                        $status =0;
+                                                    $query = mysqli_query($con, "SELECT * from musictbl WHERE status='$status' AND clentId ='$user_id'");
+                                                    $countposts = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                        <?php echo htmlentities($countposts); ?></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-auto">
+                                            <i class="fas fa-drafting-compass fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
-                <!-- /.container-fluid -->
 
             </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-           <?php 
-                include 'include/footer.php';
-           ?>
-            <!-- End of Footer -->
+            <!-- /.container-fluid -->
 
         </div>
-        <!-- End of Content Wrapper -->
+        <!-- End of Main Content -->
+    </div>
+        <!-- Footer -->
+        <?php 
+                include 'include/footer.php';
+           ?>
+        <!-- End of Footer -->
 
     </div>
+    <!-- End of Content Wrapper -->
+
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
@@ -86,7 +191,7 @@ if (strlen($_SESSION['user_id']) == 0) {
     </a>
 
 
- 
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="../plugins/vendor/jquery/jquery.min.js"></script>
