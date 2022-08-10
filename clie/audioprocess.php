@@ -1,10 +1,57 @@
-<?php
+<?php 
 session_start();
 include '../include/condig.php';
-error_reporting(0);
-if (strlen($_SESSION['admin_id']) == 0) {
-    header('location: idex.php');
-} else {
+$userID = $_SESSION['user_id'];
+$AudioID = $_SESSION['AudioID'];
+    if(isset($_GET['status']))
+    {
+        //* check payment status
+        if($_GET['status'] == 'cancelled')
+        {
+            // echo 'YOu cancel the payment';
+            header('Location: index.php');
+        }
+        elseif($_GET['status'] == 'successful')
+        {
+            $txid = $_GET['transaction_id'];
+
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => "https://api.flutterwave.com/v3/transactions/{$txid}/verify",
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => "",
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => "GET",
+                CURLOPT_HTTPHEADER => array(
+                  "Content-Type: application/json",
+                  "Authorization: Bearer FLWSECK_TEST-a6b14dffaa9217809d49e41178f5314d-X"
+                ),
+              ));
+              
+              $response = curl_exec($curl);
+              
+              curl_close($curl);
+              
+              $res = json_decode($response);
+              if($res->status)
+              {
+                $amountPaid = $res->data->charged_amount;
+                $amountToPay = $res->data->meta->price;
+                $email = $res->data->customer->email;
+                $username = $res->data->customer->name;
+                if ($amountPaid == $amountToPay) {
+                    $queryCharge= mysqli_query($con,"INSERT INTO `buyaudiotbl`(`amount`, `client_email`, `client_username`) 
+                    VALUES ('$amountPaid','$email','$username')");
+
+                    $updateOwner = mysqli_query($con,"UPDATE `musictbl` SET `clentId`='$userID' WHERE mid ='$AudioID'");
+                }
+                ?>
+<!-- html code -->
+
+<?php
 
 ?>
 
@@ -19,7 +66,7 @@ if (strlen($_SESSION['admin_id']) == 0) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin-Dashboard</title>
+    <title>Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="../plugins/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -43,56 +90,17 @@ if (strlen($_SESSION['admin_id']) == 0) {
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-
             <!-- Main Content -->
             <div id="content">
-
-               
-
                    <?php 
                         include 'include/topbar.php'
                    ?>
-
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
                     <!-- Content Row -->
                     <div class="row">
-
-                     <!-- my product Musics -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-
-                                        <div class="col mr-2">
-                                            <a href="#">
-                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                    Users
-                                                </div>
-                                            </a>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <?php 
-                                                        $u_id = $_SESSION['user_id'];
-                                                    $query = mysqli_query($con, "SELECT * from clienttbl WHERE status= 1");
-                                                    $countposts = mysqli_num_rows($query);
-                                                    ?>
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                        <?php echo htmlentities($countposts); ?></div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-auto">
-                                            <i class="fas fa-music fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <h1 style="color:green;">Now Song is Yours !</h1>
                     </div>
-
                 </div>
                 <!-- /.container-fluid -->
 
@@ -115,10 +123,6 @@ if (strlen($_SESSION['admin_id']) == 0) {
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
-
- 
-
     <!-- Bootstrap core JavaScript-->
     <script src="../plugins/vendor/jquery/jquery.min.js"></script>
     <script src="../plugins/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -139,7 +143,23 @@ if (strlen($_SESSION['admin_id']) == 0) {
 </body>
 
 </html>
-
 <?php 
    } 
+?>
+
+
+<!-- html code -->
+<?php
+                }
+                else
+                {
+                    echo 'Fraud transactio detected';
+                }
+              }
+              else
+              {
+                  echo 'Can not process payment';
+              }
+        
+    
 ?>

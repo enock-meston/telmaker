@@ -141,7 +141,7 @@ if (strlen($_SESSION['user_id']) == 0) {
 
                     <form method="POST" enctype="multipart/form-data">
 
-                        <input type="text" name="reference" value="<?php echo $reference;?>">
+                        <input type="hidden" name="reference" value="<?php echo $reference;?>">
                         <div class="form-group">
                             <input type="text" name="title" class="form-control form-control-user"
                                 value="<?php echo $rowOne['musicname'];?>">

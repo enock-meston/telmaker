@@ -61,7 +61,7 @@ if (strlen($_SESSION['user_id']) == 0) {
                         <form action="payAction.php" method="POST">
                             <div class="form-group">
                                 <input type="hidden" name="amount" class="form-control form-control-user"
-                                value="100">
+                                value="<?php echo "";?>">
                             </div>
                             <div class="form-group">
                                 <input type="text" name="username" required class="form-control form-control-user"

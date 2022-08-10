@@ -175,12 +175,23 @@ if (isset($_POST["newaccountbtn"])) {
                     <div class="row">
 
                             <?php
+
+                            
+                            $catID = $_GET['ca'];
+                            $num =1;
                             $query = mysqli_query($con,"SELECT tblcategory.catid,tblcategory.title as ctitle,tblcategory.AddedBy,
                              musictbl.mid,musictbl.title,musictbl.musicname,musictbl.path,musictbl.thumbnail,musictbl.clentId, 
                              musictbl.valueInAmmount,musictbl.valueInAmmount,musictbl.referece as muReference, musictbl.category,
                              musictbl.status as mustatus FROM musictbl LEFT JOIN tblcategory ON musictbl.category= tblcategory.catid
-                              WHERE musictbl.status = 1 ORDER BY RAND() DESC");
+                              WHERE musictbl.status = 1 AND tblcategory.catid='$catID' ORDER BY RAND() DESC");
+                              if (mysqli_num_rows($query)<=0) {
+                                ?>
+                                    <h1 style="color: red;">No data Founds !</h1>
+                                <?php
+                                } else {
+                                              
                                 while ($row1 = mysqli_fetch_array($query)) {
+                                    
                             ?>
                         <div class="col-lg-4">
                             <div class="card shadow mb-1">
@@ -218,6 +229,7 @@ if (isset($_POST["newaccountbtn"])) {
 
                         <?php
                             }
+                        }
                         
                         ?>
                         

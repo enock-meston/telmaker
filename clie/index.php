@@ -65,7 +65,7 @@ if (strlen($_SESSION['user_id']) == 0) {
                                     <div class="row no-gutters align-items-center">
 
                                         <div class="col mr-2">
-                                            <a href="#">
+                                            <a href="listProd.php">
                                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">My
                                                     Products
                                                 </div>
@@ -149,6 +149,43 @@ if (strlen($_SESSION['user_id']) == 0) {
                                                         $user_id = $_SESSION['user_id'];
                                                         $status =0;
                                                     $query = mysqli_query($con, "SELECT * from musictbl WHERE status='$status' AND clentId ='$user_id'");
+                                                    $countposts = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                        <?php echo htmlentities($countposts); ?></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-auto">
+                                            <i class="fas fa-drafting-compass fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- songs's Transactions -->
+
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+
+                                        <div class="col mr-2">
+                                            <a href="#">
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                    Paid Songs
+                                                </div>
+                                            </a>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <?php 
+                                                        $user_email = $_SESSION['email'];
+                                                        $status =0;
+                                                    $query = mysqli_query($con, "SELECT * from buyaudiotbl WHERE client_email='$user_email'");
                                                     $countposts = mysqli_num_rows($query);
                                                     ?>
                                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">

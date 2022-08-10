@@ -2,8 +2,8 @@
 session_start();
 include '../include/condig.php';
 error_reporting(0);
-if (strlen($_SESSION['admin_id']) == 0) {
-    header('location: idex.php');
+if (strlen($_SESSION['user_id']) == 0) {
+    header('location: ../index.php');
 } else {
 
 ?>
@@ -19,7 +19,7 @@ if (strlen($_SESSION['admin_id']) == 0) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin-Dashboard</title>
+    <title>Upload</title>
 
     <!-- Custom fonts for this template-->
     <link href="../plugins/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -37,7 +37,7 @@ if (strlen($_SESSION['admin_id']) == 0) {
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-       <?php 
+        <?php 
             include 'include/sidebar.php';
        ?>
 
@@ -47,9 +47,9 @@ if (strlen($_SESSION['admin_id']) == 0) {
             <!-- Main Content -->
             <div id="content">
 
-               
 
-                   <?php 
+
+                <?php 
                         include 'include/topbar.php'
                    ?>
 
@@ -57,40 +57,46 @@ if (strlen($_SESSION['admin_id']) == 0) {
                 <div class="container-fluid">
 
                     <!-- Content Row -->
-                    <div class="row">
+                    <div class="row justify-content-center">
 
-                     <!-- my product Musics -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-
-                                        <div class="col mr-2">
-                                            <a href="#">
-                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                    Users
-                                                </div>
-                                            </a>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <?php 
-                                                        $u_id = $_SESSION['user_id'];
-                                                    $query = mysqli_query($con, "SELECT * from clienttbl WHERE status= 1");
-                                                    $countposts = mysqli_num_rows($query);
-                                                    ?>
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                        <?php echo htmlentities($countposts); ?></div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-auto">
-                                            <i class="fas fa-music fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
+                    <?php 
+                    
+                    $audioID = $_GET['id'];
+                        $queryAudio =mysqli_query($con,"SELECT * FROM `musictbl` where mid = '$audioID'");
+                        $rowtwo = mysqli_fetch_array($queryAudio);
+                    
+                    
+                    
+                    ?>
+                        <form action="payAudioAction.php" method="POST">
+                            <div class="form-group">
+                                <input type="text" name="audioId" class="form-control form-control-user"
+                                value="<?php echo $rowtwo['mid'];?>">
+                                <input type="text" name="amount" class="form-control form-control-user"
+                                value="<?php echo $rowtwo['valueInAmmount'];?>">
                             </div>
-                        </div>
+                            <div class="form-group">
+                                <input type="text" name="username" required class="form-control form-control-user"
+                                    value="<?php echo $_SESSION['username'];?>">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="email" required class="form-control form-control-user"
+                                   value="<?php echo $_SESSION['email'];?>">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" name="phone" required class="form-control form-control-user"
+                                   value="<?php echo $_SESSION['phone'];?>">
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary" 
+                            name="paybtn"><i class="fas fa-fw fa-shopping-cart"></i>
+                            Pay First 
+                            </button>
+                                
+                                
+                        </form>
+
                     </div>
 
                 </div>
@@ -100,7 +106,7 @@ if (strlen($_SESSION['admin_id']) == 0) {
             <!-- End of Main Content -->
 
             <!-- Footer -->
-           <?php 
+            <?php 
                 include 'include/footer.php';
            ?>
             <!-- End of Footer -->
@@ -117,7 +123,7 @@ if (strlen($_SESSION['admin_id']) == 0) {
     </a>
 
 
- 
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="../plugins/vendor/jquery/jquery.min.js"></script>

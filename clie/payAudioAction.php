@@ -1,25 +1,91 @@
 <?php
 session_start();
-include '../include/condig.php';
-error_reporting(0);
-if (strlen($_SESSION['admin_id']) == 0) {
-    header('location: idex.php');
-} else {
 
-?>
+if (isset($_POST['paybtn'])) {
+    # code...
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $amount = $_POST['amount'];
+    $phone = $_POST['phone'];
+    $audioID = $_POST['audioId'];
+    // $ref= $_POST['proreference'];
+    // $_SESSION['reference'] = $ref;
+    $charge ="Charge Amount";
 
+    // $proname = "Bootrap";
+  
+    $request = [
+        'tx_ref' => time(),
+        'amount' => $amount,
+        'currency' => 'RWF',
+        'payment_options' => 'mobilemoneyrwanda',
+        'redirect_url' => 'http://localhost:8080/telmaker/clie/audioprocess.php', //edit too
+         //edit too
+        'customer' => [
+            'email' => $email,
+            'name' => $username,
+            'phonenumber'=>$phone
+        ],
+        'meta' => [
+            'price' => $amount
+        ],
+        'customizations' => [
+            'title' => 'Paying for '.$charge,
+            'description' => 'Charge Amount for Uploading new Music'
+        ]
+    ];
+
+
+
+    //* Ca;; f;iterwave emdpoint
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://api.flutterwave.com/v3/payments',
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'POST',
+    CURLOPT_POSTFIELDS => json_encode($request),
+    CURLOPT_HTTPHEADER => array(
+        'Authorization: Bearer FLWSECK_TEST-a6b14dffaa9217809d49e41178f5314d-X',
+        'Content-Type: application/json'
+    ),
+    ));
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+
+      $res = json_decode($response);
+    if($res->status == 'success')
+    {
+        $link = $res->data->link;
+        header('Location: '.$link);
+        $_SESSION['email'] = $email;
+        $_SESSION['username'] = $username;
+        $_SESSION['phone'] = $phone;
+        $_SESSION['AudioID'] = $audioID;
+    }elseif ($res->status != 'success') {
+        echo " is NUll";
+    }
+    else
+    {
+        ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin-Dashboard</title>
+    <title>Message</title>
 
     <!-- Custom fonts for this template-->
     <link href="../plugins/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -37,7 +103,7 @@ if (strlen($_SESSION['admin_id']) == 0) {
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-       <?php 
+        <?php 
             include 'include/sidebar.php';
        ?>
 
@@ -47,9 +113,9 @@ if (strlen($_SESSION['admin_id']) == 0) {
             <!-- Main Content -->
             <div id="content">
 
-               
 
-                   <?php 
+
+                <?php 
                         include 'include/topbar.php'
                    ?>
 
@@ -57,40 +123,9 @@ if (strlen($_SESSION['admin_id']) == 0) {
                 <div class="container-fluid">
 
                     <!-- Content Row -->
-                    <div class="row">
-
-                     <!-- my product Musics -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-
-                                        <div class="col mr-2">
-                                            <a href="#">
-                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                    Users
-                                                </div>
-                                            </a>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <?php 
-                                                        $u_id = $_SESSION['user_id'];
-                                                    $query = mysqli_query($con, "SELECT * from clienttbl WHERE status= 1");
-                                                    $countposts = mysqli_num_rows($query);
-                                                    ?>
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                        <?php echo htmlentities($countposts); ?></div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-auto">
-                                            <i class="fas fa-music fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="row justify-content-center">
+                        <h1>System is under Maintainance </h1>
+                        <a href="upl.php" class="btn btn-info">Back to Home</a>
                     </div>
 
                 </div>
@@ -100,7 +135,7 @@ if (strlen($_SESSION['admin_id']) == 0) {
             <!-- End of Main Content -->
 
             <!-- Footer -->
-           <?php 
+            <?php 
                 include 'include/footer.php';
            ?>
             <!-- End of Footer -->
@@ -117,7 +152,7 @@ if (strlen($_SESSION['admin_id']) == 0) {
     </a>
 
 
- 
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="../plugins/vendor/jquery/jquery.min.js"></script>
@@ -137,9 +172,10 @@ if (strlen($_SESSION['admin_id']) == 0) {
     <script src="../plugins/js/demo/chart-pie-demo.js"></script>
 
 </body>
+<?php
+    }
 
-</html>
+}
 
-<?php 
-   } 
+
 ?>
