@@ -70,7 +70,7 @@ if (strlen($_SESSION['user_id']) == 0) {
                     ?>
                         <form action="payAudioAction.php" method="POST">
                             <div class="form-group">
-                                <input type="text" name="audioId" class="form-control form-control-user"
+                                <input type="hidden" name="audioId" class="form-control form-control-user"
                                 value="<?php echo $rowtwo['mid'];?>">
                                 <input type="text" name="amount" class="form-control form-control-user"
                                 value="<?php echo $rowtwo['valueInAmmount'];?>">

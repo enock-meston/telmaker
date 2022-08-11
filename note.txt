@@ -22,3 +22,11 @@ pages user thos key
 2.process.php
 3.playAudioAction.php
 4.audioprocess.php
+
+account
+======
+000580775471491 kb
+4002100893024 equity
+
+
+
