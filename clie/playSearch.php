@@ -100,7 +100,7 @@ if (strlen($_SESSION['user_id']) == 0) {
 
                                 <script type="text/javascript">
                                     var myaud = document.getElementById("aud");
-                                    var k = setInterval("pauseAud()", 10000);
+                                    var k = setInterval("pauseAud()", 30000);
 
                                     function playAud() {
                                         myaud.play();

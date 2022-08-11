@@ -5,3 +5,20 @@ email
 ======
 sesongathadeo@gmail.com
 pass: 0780537070
+
+
+Public key
+==========
+FLWPUBK_TEST-e3a960dcc4d09c82f2b599e14f2a974a-X
+
+Secret key
+==========
+FLWSECK_TEST-a6b14dffaa9217809d49e41178f5314d-X
+
+
+pages user thos key
+===================
+1.playAction.php
+2.process.php
+3.playAudioAction.php
+4.audioprocess.php

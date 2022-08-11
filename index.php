@@ -269,6 +269,11 @@ if (isset($_POST["newaccountbtn"])) {
                      </div>
                      <input type="submit" name="loginBtn" value="Login" class="btn btn-primary btn-user btn-block">
                  </form>
+
+                 <hr>
+                 <div class="text-center">
+                     <a class="small" href="forgot_password.php">Forgot Password?</a>
+                 </div>
              </div>
              <div class="modal-footer">
                  <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>

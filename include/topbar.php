@@ -2,16 +2,16 @@
  <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
      <a class="navbar-brand" href="#">TalMaher</a>
      <!-- Sidebar Toggle (Topbar) -->
-     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3" 
-     data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" 
-     aria-expanded="false" aria-label="Toggle navigation">
+     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3" data-toggle="collapse"
+         data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+         aria-label="Toggle navigation">
          <i class="fa fa-bars"></i>
      </button>
 
      <div class="collapse navbar-collapse" id="navbarNavDropdown">
          <ul class="navbar-nav">
              <li class="nav-item active">
-                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                 <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
              </li>
              <?php
                  $ret=mysqli_query($con,"SELECT * from  tblcategory where status=1");
@@ -19,7 +19,8 @@
 						{
 							?>
              <li class="nav-item">
-                 <a class="nav-link" href="indexse.php?ca=<?php echo $result['catid'] ;?>"><?php echo $result['title'] ;?></a>
+                 <a class="nav-link"
+                     href="indexse.php?ca=<?php echo $result['catid'] ;?>"><?php echo $result['title'] ;?></a>
              </li>
              <?php } ?>
 
@@ -122,6 +123,11 @@
                      </div>
                      <input type="submit" name="loginBtn" value="Login" class="btn btn-primary btn-user btn-block">
                  </form>
+
+                 <hr>
+                 <div class="text-center">
+                     <a class="small" href="forgot_password.php">Forgot Password?</a>
+                 </div>
              </div>
              <div class="modal-footer">
                  <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -198,7 +204,3 @@
      </div>
  </div>
  <!--end of new acount modal  -->
-
-
-
- 
