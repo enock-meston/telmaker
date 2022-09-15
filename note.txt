@@ -5,6 +5,8 @@ email
 ======
 sesongathadeo@gmail.com
 pass: 0780537070
+password_outlook:0780537070@123Ta
+talmaker@outlook.com
 
 
 Public key
